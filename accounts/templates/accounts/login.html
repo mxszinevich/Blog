@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Авторизация пользователя</h1>
+
+                </div>
+            </div>
+        </header>
+{% endblock title%}
+
+ {% block content_main %}
+<div class="container col-4 mt-5">
+    <div class="mx-auto">
+        <div class="row">
+
+            {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+            <p> {{ errors }} </p>
+        {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+        <form action="" method="post"> {% csrf_token %}
+
+        {% if form.errors %}
+        {{form.non_field_errors}}
+        {% endif %}
+            {% for field in form %}
+
+            <div class="form-group">
+
+                <label for="{{field.id_for_label }}">Введите {{field.label}}</label>
+                {{ field }}
+            </div>
+                {% endfor %}
+
+
+            <button type="submit" class="btn btn-dark mt-3">Войти</button>
+        </form>
+
+        </div>
+    </div>
+</div>
+{%  endblock content_main %}

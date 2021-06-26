@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<div class="container px-4 py-5" id="featured-3">
+     <div class="text-center my-5">
+        <h2 class="pb-2 border-bottom">Личный кабинет </h2>
+           <img src="{{user.logo.url}}" alt="mdo" width="64" height="64" class="rounded-circle">
+                <h1 class="text-red fs-3 fw-bolder">{{user.name}}</h1>
+                <p class="text-red-50 mb-0">{{user.email}}</p>
+            </div>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+        </div>
+        <h2>Изменение профиля</h2>
+        <p>Здесь Вы можете поменять свои данные</p>
+        <a href="{% url 'update' user.slug user.pk %}" class="icon-link">
+          Изменить данные
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
+        </div>
+        <h2>Создание статьи</h2>
+        <p>Здесь Вы можете создать новую статью</p>
+        <a href="{% url 'create_article' user.slug user.pk %}" class="icon-link">
+          Написать статью
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+        </div>
+        <h2>Просмотр всех статей</h2>
+        <p>Здесь Вы можете просмотреть все свои статьи</p>
+        <a href="{% url 'user_articles' user.slug %}" class="icon-link">
+          Просмотр статей
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock title%}
+
+{% block content_main %}
+
+{%  endblock content_main %}

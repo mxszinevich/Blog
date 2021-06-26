@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+
+{% block content_main %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for article in articles %}
+        <div class="col">
+          <div class="card" style="width: 100%;height: 100%">
+              {% if article.image %}
+                <img src="{{article.image.url}}" class="card-img-top" alt="Responsive image">
+              {% else %}
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+              {%endif%}
+            <div class="card-body">
+              <p class="card-text">{{article.description|safe|striptags|truncatewords:20}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+
+                  <div class="btn-group">
+                    <div class="col-6">
+                         <a href="{% url 'article' article.slug %}" class="btn btn-sm btn-outline-secondary mr-2">Посмотреть</a>
+                    </div>
+                    <div class="col-6">
+                         <a href="{% url 'update_article' article.slug %}" class="btn btn-sm btn-outline-secondary ml-2">Редактировать</a>
+                    </div>
+                </div>
+              </div>
+<div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group mt-2">
+
+                    <div class="col-6">
+                         <a href="" class="btn btn-sm btn-outline-secondary ml-2">Удалить</a>
+                    </div>
+                </div>
+
+
+                <small class="text-muted">{{article.date_time}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+{%  endblock content_main %}

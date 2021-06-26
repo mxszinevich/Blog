@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+        {% block title %}
+
+        {% endblock title %}
+
+
+
+
+
+
+{% block content_main %}
+ <div class="row">
+ <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1">{{article.name|safe}}</h1>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">{{article.date_time}}</div>
+                            <!-- Post categories-->
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!"></a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!"></a>
+                        </header>
+                        {% if article.image %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{{ article.image.url }}" alt="..."></figure>
+                        {% endif %}
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">{{article.body|safe}}</p>
+                        </section>
+                    </article>
+
+                </div>
+ </div>
+{%  endblock content_main %}

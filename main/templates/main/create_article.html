@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    <header class="py-2 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center" >
+
+                <div class="px-2 py-2  text-center">
+                         {% if user.logo %}
+                        <div class="dropdown text-center">
+                        <img src="{{user.logo.url}}" alt="mdo" width="64" height="64" class="rounded-circle">
+                        </div>
+                        {% endif %}
+                    <small>{{user.email}}</small>
+                <h3 class="display-5 fw-bold">Создание статьи</h3>
+
+                </div>
+                </div>
+            </div>
+        </header>
+{% endblock title%}
+
+{% block content_main %}
+<div class="row mt-3">
+    <div class="col-8 mx-auto">
+        <div class="row">
+
+        <form action="" method="post" enctype="multipart/form-data"> {% csrf_token %}
+            {% if form.errors %}
+            {{form.non_field_errors}}
+            {% endif %}
+
+            {{form.media}}
+            {% for field in form %}
+                <div class="form-group mt-2">
+                    {% if field.id_for_label != 'id_image'  %}
+                    <label for="{{ field.id_for_label }}"><strong>{{field.label}}</strong></label>
+                    {{ field  }}
+                    {% else %}
+                    <div class="col-4">
+                         {{ field  }}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="row col-6 mx-auto">
+            <button type="submit" class="btn btn-dark mt-3">Создать статью</button>
+            </div>
+        </form>
+    <!-- Side widgets-->
+
+        </div>
+
+    </div>
+      <!-- Side widgets-->
+    <div class="col-lg-4">
+        <div class="list-group">
+            <div class="text-center">
+                <h3>Последние статьи</h3>
+            </div>
+
+            {% for article in articles|slice:5 %}
+          <a href="{% url 'article' article.slug %}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{article.name|truncatewords_html:4|striptags|safe  }}</h5>
+              <small class="text-muted">{{article.date_time}}</small>
+            </div>
+            <p class="mb-1">{{article.description|truncatewords_html:4|striptags|safe  }}</p>
+            <small class="text-muted">Создатель: {{user.email}}</small>
+          </a>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+
+</div>
+{%  endblock content_main %}
