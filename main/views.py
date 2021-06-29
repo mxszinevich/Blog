@@ -112,7 +112,7 @@ def delete_article_view(request,slug):
         return redirect('home')
 
 
-
+#Нужен рефакторинг кода
 
 
 
