@@ -20,6 +20,7 @@ class Article(models.Model):
     date_time=models.DateTimeField(auto_now_add=True,verbose_name='Время добавления')
     image=models.ImageField(upload_to=generate_filename,verbose_name='Изображение',blank=True,null=True)
     user=models.ForeignKey(settings.AUTH_USER_MODEL,verbose_name='Пользователь',on_delete=SET_NULL,null=True)
+    publication_status=models.BooleanField(default=False,verbose_name='Статус публикации')
 
     def __str__(self):
         return self.name
